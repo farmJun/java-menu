@@ -1,10 +1,28 @@
 package menu.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import menu.domain.Name;
+import menu.domain.Names;
+import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
 
     private void printStartRecommendation() {
         OutputView.printStartRecommendation();
+    }
+
+    private Names readNames() {
+        while (true) {
+            try {
+                List<Name> names = InputView.readNames().stream()
+                    .map(Name::new)
+                    .collect(Collectors.toList());
+                return new Names(names);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
