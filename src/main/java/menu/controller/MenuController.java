@@ -86,4 +86,11 @@ public class MenuController {
         }
     }
 
+    private void printResult(List<Category> categories, Coaches coaches) {
+        OutputView.printResult();
+        OutputView.printDays();
+        OutputView.printCategories(categories);
+        OutputView.printCoachAndMenus(coaches.getCoaches());
+        OutputView.printEndRecommendation();
+    }
 }
