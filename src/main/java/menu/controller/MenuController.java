@@ -66,18 +66,6 @@ public class MenuController {
         }
     }
 
-    private Category recommendCategory(List<Category> categories) {
-        while (true) {
-            Category category = Recommendation.recommendCategory();
-
-            int freq = Collections.frequency(categories, category);
-
-            if (freq < 2) {
-                categories.add(category);
-                return category;
-            }
-        }
-    }
 
     private List<Category> recommend(Coaches coaches) {
         List<Category> categories = new ArrayList<>();
@@ -88,16 +76,13 @@ public class MenuController {
         return categories;
     }
 
+    private Category recommendCategory(List<Category> categories) {
+        Category category = Recommendation.recommendCategory(categories);
+        return category;
+    }
+
     private void recommendMenu(Coaches coaches, Category category) {
-        for (Coach coach : coaches.getCoaches()) {
-            while (true) {
-                Menu menu = Recommendation.recommendMenu(category);
-                if (!coach.inedible(menu) && !coach.alreadyRecommended(menu)) {
-                    coach.recommend(menu);
-                    break;
-                }
-            }
-        }
+        Recommendation.recommendMenu(coaches,category);
     }
 
     private void printResult(List<Category> categories, Coaches coaches) {

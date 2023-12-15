@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Recommendation {
@@ -13,15 +14,35 @@ public class Recommendation {
 
     }
 
-    public static Category recommendCategory() {
-        Category category = Category.findByCode(generateRandomCode());
-        return category;
+    public static Category recommendCategory(List<Category> categories) {
+        while (true) {
+            Category category = Category.findByCode(generateRandomCode());
+
+            int freq = Collections.frequency(categories, category);
+
+            if (freq < 2) {
+                categories.add(category);
+                return category;
+            }
+        }
     }
 
-    public static Menu recommendMenu(Category category) {
-        List<String> menuNames = category.getMenuNames();
-        String menu = Randoms.shuffle(menuNames).get(FIRST);
-        return Menu.find(menu);
+    public static void recommendMenu(Coaches coaches, Category category) {
+        for (Coach coach : coaches.getCoaches()) {
+            recommendMenu(category, coach);
+        }
+    }
+
+    private static void recommendMenu(Category category, Coach coach) {
+        while (true) {
+            List<String> menuNames = category.getMenuNames();
+            String menuName = Randoms.shuffle(menuNames).get(FIRST);
+            Menu menu = Menu.find(menuName);
+            if (!coach.inedible(menu) && !coach.alreadyRecommended(menu)) {
+                coach.recommend(menu);
+                break;
+            }
+        }
     }
 
     private static int generateRandomCode() {
