@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Coach {
 
+    private static final int MAXIMUM_INEDIBLE_MENU_COUNT = 2;
+    private static final String OVER_MAXIMUM_MENU_COUNT = "[ERROR] 코치가 못 먹는 음식은 최대 2개입니다.";
+
     private final Name name;
     private final Menus inedibleMenus;
     private final Menus recommendedMenus;
@@ -18,8 +21,8 @@ public class Coach {
     }
 
     private void validate(Menus inedibleMenus) {
-        if (inedibleMenus.size() > 2) {
-            throw new IllegalArgumentException("[ERROR] 편식 쟁이");
+        if (inedibleMenus.size() > MAXIMUM_INEDIBLE_MENU_COUNT) {
+            throw new IllegalArgumentException(OVER_MAXIMUM_MENU_COUNT);
         }
     }
 
