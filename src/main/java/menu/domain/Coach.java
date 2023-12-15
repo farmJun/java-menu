@@ -23,4 +23,8 @@ public class Coach {
         }
     }
 
+    public boolean inedible(Menu menu) {
+        return inedibleMenus.has(menu);
+    }
+
 }
