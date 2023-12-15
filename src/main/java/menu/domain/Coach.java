@@ -39,4 +39,7 @@ public class Coach {
         return recommendedMenus.getMenusNames();
     }
 
+    public String getName() {
+        return name.getName();
+    }
 }
