@@ -54,10 +54,16 @@ public class MenuController {
     }
 
     private Menus readInedibleMenus(Name name) {
-        List<Menu> menus = InputView.readInedibleMenus(name).stream()
-            .map(Menu::find)
-            .collect(Collectors.toList());
-        return new Menus(menus);
+        while (true) {
+            try {
+                List<Menu> menus = InputView.readInedibleMenus(name).stream()
+                    .map(Menu::find)
+                    .collect(Collectors.toList());
+                return new Menus(menus);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Category recommendCategory(List<Category> categories) {

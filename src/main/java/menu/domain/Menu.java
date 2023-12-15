@@ -60,7 +60,9 @@ public enum Menu {
         return Arrays.stream(Menu.values())
             .filter(menu -> menu.name.equals(name))
             .findFirst()
-            .orElse(NOTHING);
+            .orElseThrow(() ->
+                new IllegalArgumentException("[ERROR] 없는 메뉴입니다.")
+            );
     }
 
     public String getName() {
