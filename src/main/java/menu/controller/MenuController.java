@@ -1,14 +1,17 @@
 package menu.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.domain.Menu;
 import menu.domain.Menus;
 import menu.domain.Name;
 import menu.domain.Names;
+import menu.domain.Recommendation;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -47,6 +50,19 @@ public class MenuController {
             .map(Menu::find)
             .collect(Collectors.toList());
         return new Menus(menus);
+    }
+
+    private Category recommendCategory(List<Category> categories) {
+        while (true) {
+            Category category = Recommendation.recommendCategory();
+
+            int freq = Collections.frequency(categories, category);
+
+            if (freq < 2) {
+                categories.add(category);
+                return category;
+            }
+        }
     }
 
 }
