@@ -65,4 +65,16 @@ public class MenuController {
         }
     }
 
+    private void recommendMenu(Coaches coaches, Category category) {
+        for (Coach coach : coaches.getCoaches()) {
+            while (true) {
+                Menu menu = Recommendation.recommendMenu(category);
+                if (!coach.inedible(menu) && !coach.alreadyRecommended(menu)) {
+                    coach.recommend(menu);
+                    break;
+                }
+            }
+        }
+    }
+
 }
