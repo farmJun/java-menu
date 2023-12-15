@@ -3,6 +3,7 @@ package menu.view;
 import java.util.List;
 import java.util.StringJoiner;
 import menu.domain.Category;
+import menu.domain.Coach;
 import menu.domain.Day;
 
 public class OutputView {
@@ -32,6 +33,19 @@ public class OutputView {
             categoryJoiner.add(category.getName());
         }
         System.out.println("[ " + categoryJoiner + " ]");
+    }
+
+    public static void printCoachAndMenus(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            StringJoiner coachJoiner = new StringJoiner(" | ");
+            coachJoiner.add(coach.getName());
+            List<String> recom = coach.getRecommendedMenus();
+
+            for (String menu : recom) {
+                coachJoiner.add(menu);
+            }
+            System.out.println("[ " + coachJoiner + " ]");
+        }
     }
 
 }
