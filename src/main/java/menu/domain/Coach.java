@@ -27,4 +27,8 @@ public class Coach {
         return inedibleMenus.has(menu);
     }
 
+    public boolean alreadyRecommended(Menu menu) {
+        return recommendedMenus.has(menu);
+    }
+
 }
