@@ -34,4 +34,9 @@ public class Coach {
     public void recommend(Menu menu) {
         recommendedMenus.add(menu);
     }
+
+    public List<String> getRecommendedMenus() {
+        return recommendedMenus.getMenusNames();
+    }
+
 }
