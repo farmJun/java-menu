@@ -65,6 +65,15 @@ public class MenuController {
         }
     }
 
+    private List<Category> recommend(Coaches coaches) {
+        List<Category> categories = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Category category = recommendCategory(categories);
+            recommendMenu(coaches, category);
+        }
+        return categories;
+    }
+
     private void recommendMenu(Coaches coaches, Category category) {
         for (Coach coach : coaches.getCoaches()) {
             while (true) {
