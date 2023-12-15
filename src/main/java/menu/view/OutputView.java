@@ -48,4 +48,7 @@ public class OutputView {
         }
     }
 
+    public static void printEndRecommendation() {
+        System.out.println("추천을 완료했습니다.");
+    }
 }
