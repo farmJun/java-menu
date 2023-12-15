@@ -17,6 +17,14 @@ import menu.view.OutputView;
 
 public class MenuController {
 
+    public void run() {
+        printStartRecommendation();
+        Names names = readNames();
+        Coaches coaches = getCoaches(names);
+        List<Category> categories = recommend(coaches);
+        printResult(categories, coaches);
+    }
+
     private void printStartRecommendation() {
         OutputView.printStartRecommendation();
     }
