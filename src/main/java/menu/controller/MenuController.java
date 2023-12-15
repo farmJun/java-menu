@@ -2,6 +2,8 @@ package menu.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.domain.Menu;
+import menu.domain.Menus;
 import menu.domain.Name;
 import menu.domain.Names;
 import menu.view.InputView;
@@ -25,4 +27,12 @@ public class MenuController {
             }
         }
     }
+
+    private Menus readInedibleMenus(Name name) {
+        List<Menu> menus = InputView.readInedibleMenus(name).stream()
+            .map(Menu::find)
+            .collect(Collectors.toList());
+        return new Menus(menus);
+    }
+
 }
