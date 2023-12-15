@@ -31,4 +31,7 @@ public class Coach {
         return recommendedMenus.has(menu);
     }
 
+    public void recommend(Menu menu) {
+        recommendedMenus.add(menu);
+    }
 }
